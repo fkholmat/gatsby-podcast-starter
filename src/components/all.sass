@@ -1,0 +1,22 @@
+@import "~bulma/sass/utilities/initial-variables"
+
+// Config vars
+$background: #ffffff
+$primary: #801336
+$link: #133680
+$text: #000000
+$navbar-item-hover-background-color: $background
+$navbar-item-hover-color: $primary
+$navbar-dropdown-item-hover-background-color: #DFC4CD
+$tabs-link-active-color: $text
+$navbar-dropdown-arrow: $primary
+
+@media screen and (min-width: 769px)
+  .tabs
+    margin-top: -2.5rem;
+
+@import "~bulma"
+
+// adds box shadow to the navigation bar when scrolled
+.scrolled 
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
