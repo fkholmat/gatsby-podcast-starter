@@ -5,7 +5,7 @@ import BlogPosts from "../components/BlogPosts";
 import "../components/all.sass";
 
 class BlogPage extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,17 +14,30 @@ class BlogPage extends React.Component {
     this.handlePickCategory = this.handlePickCategory.bind(this);
   }
 
-  handlePickCategory (value, e) {
+  handlePickCategory(value, e) {
     e.preventDefault();
     let element = document.getElementById(this.state.categoryID)
     element.classList.remove("is-active")
     element = document.getElementById(value)
     element.classList.add("is-active")
-    this.setState({categoryID : value});
+    this.setState({ categoryID: value });
   }
 
   render() {
     const { data } = this.props;
+
+    // Get only currently used Categories in Blogs
+    const activeCategories = data.allDatoCmsBlog.edges.map((edge) => (
+      edge.node.category.map((element) => (element))
+    )).flat() // flatten nested array objects; might contain duplicates
+
+    // Remove duplicate objects from array
+    const uniqueActiveCategories = Array.from(new Set(activeCategories.map(category => category.id))) 
+      .map(id => {
+        // return categories from original activeCategories
+        return activeCategories.find(category => category.id === id) 
+      })
+
     return (
       <Layout>
         <div className="hero is-primary is-medium is-bold">
@@ -40,9 +53,9 @@ class BlogPage extends React.Component {
                 <li id="all" className="is-active">
                   <a href="/" onClick={(event) => this.handlePickCategory("all", event)}>Latest</a>
                 </li>
-                {data.allDatoCmsCategory.edges.map(({node: category}) => (
-                  <li key={category.id} id={category.id}>
-                    <a href="/" onClick={(event) => this.handlePickCategory(category.id, event)}>{category.title}</a>
+                {uniqueActiveCategories.map((object) => (
+                  <li key={object.id} id={object.id}>
+                    <a href="/" onClick={(event) => this.handlePickCategory(object.id, event)}>{object.title}</a>
                   </li>
                 ))}
               </ul>
@@ -63,13 +76,13 @@ export default BlogPage;
 
 export const query = graphql`
   query CategoryQuery {
-    allDatoCmsCategory(sort: { fields: title }) {
-      totalCount
+    allDatoCmsBlog(filter: {}) {
       edges {
         node {
-          title
-          slug
-          id
+          category {
+            title
+            id
+          }
         }
       }
     }
