@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Layout from "../components/Layout";
 import BlogPosts from "../components/BlogPosts";
 import "../components/all.sass";
 
@@ -39,7 +38,7 @@ class BlogPage extends React.Component {
       })
 
     return (
-      <Layout>
+      < >
         <div className="hero is-primary is-medium is-bold">
           <div className="hero-body">
             <div className="container has-text-centered">
@@ -67,7 +66,7 @@ class BlogPage extends React.Component {
             <BlogPosts id={this.state.categoryID} />
           </div>
         </section>
-      </Layout>
+      </>
     );
   }
 }

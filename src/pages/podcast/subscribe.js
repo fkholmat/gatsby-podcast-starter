@@ -1,9 +1,8 @@
 import React from "react";
-import Layout from "../../components/Layout";
 
 export default () => {
   return (
-    <Layout>
+    < >
       <section className="hero is-primary is-medium is-bold">
         <div className="hero-body">
           <div className="container">
@@ -17,6 +16,6 @@ export default () => {
           <h1 className="title is-4">Current Episode</h1>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };

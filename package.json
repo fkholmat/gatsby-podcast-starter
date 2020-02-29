@@ -12,8 +12,11 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
     "bulma": "^0.8.0",
     "gatsby": "^2.18.25",
+    "gatsby-plugin-emotion": "^4.1.22",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sass": "^2.1.27",
     "gatsby-source-anchor": "^0.5.1",
@@ -21,6 +24,7 @@
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-h5-audio-player": "^2.3.6",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.9.0",
     "react-masonry-component": "^6.2.1"
